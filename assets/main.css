@@ -1,0 +1,12 @@
+:root{--primary: #354935;}
+nav{
+    text-align: center;
+    padding: 20px;
+    font-size :20px;
+}
+a{
+    text-decoration: none;
+}
+.nuxt-link-exact-active{
+    color: var(--secondary);
+}
