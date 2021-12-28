@@ -26,6 +26,9 @@
                     <input type="text" id="thumbnail" v-model="formvalues.thumbnail"/>
                 </div>
               </div>
+              <!-- <div class="">
+                <input type=""
+              </div> -->
               <div class="row">
                 <div class="col-25">
                   <label for="previewtext">previewText</label>
