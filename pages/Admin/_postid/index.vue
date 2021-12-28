@@ -1,32 +1,41 @@
 <template>
-    <div class="admin-post-page">
-        <div class="update-form">
-            <Adminform :post="loadedPost"/>
-         </div>   
-
-
-    </div>
+  <div class="admin-post-page">
+    <section class="update-form">
+      <Adminform :post="loadedPost" />
+    </section>
+  </div>
 </template>
 
 <script>
 import Adminform from '@/components/Admin/Adminform'
-    export default {
-        layout:'admin',
-        components:{
-            Adminform
-        },
-        data(){
-            return{
-                loadedPost:{
-                    name:'madhuri',
-                    emailid:'madhurijagtap0123@gmail.com',
-                    course:[]
-                }
-            }
-        }
+
+export default {
+  layout: 'admin',
+  components: {
+    Adminform
+  },
+  data() {
+    return {
+      loadedPost: {
+        author: 'Maximilian',
+        title: 'My awesome Post',
+        content: 'Super amazing, thanks for that!',
+        thumbnailLink: 'https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg'
+      }
     }
+  }
+}
 </script>
 
-<style  scoped>
+<style scoped>
+.update-form {
+  width: 90%;
+  margin: 20px auto;
+}
 
+@media (min-width: 768px) {
+  .update-form {
+    width: 500px;
+  }
+}
 </style>

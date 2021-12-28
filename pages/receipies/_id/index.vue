@@ -4,8 +4,9 @@
      <h2 >Title of the post{{loadedPost.title}}</h2>
       <p>{{loadedPost.author}}</p>
       <div>{{loadedPost.updatedDate}}</div>
+      <div>
       </div>
-    <div>
+  
       <p>
       <a href="#">madhurijagtap0123@gmail.com</a>
       </p>
@@ -16,22 +17,19 @@
 </template>
 
 <script>
+import axios from "axios";
   export default {
-   asyncData(context,callback){
-     setTimeout(()=>{
-       callback(null,{
-         loadedPost:{
-           id:'1',
-         title:"first postId(ID:" + context.route.params.id + ")",
-          previewText:'Awsome Recepies',
-          author:'madhuri',
-          updatedDate:new Date(),
-          content:"This is single post content",
-          thumbnail:'http://i1.wp.com/creativekhadija.com/wp-content/uploads/2016/06/eid-recipe-rasmilai.jpeg'
-         }
-       });
-     },1000);
-   }
+  
+   asyncData(context) {
+    return axios.get('https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts/' + context.params.id + '.json')
+      .then(res => {
+        return {
+          loadedPost: res.data
+        }
+      })
+      .catch(e => context.error(e))
+  }
+
   }
 </script>
 

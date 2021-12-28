@@ -1,30 +1,33 @@
 <template>
-  <div class="header-container">
-    <header class="the-header">
-      <!-- <ThesidenavToggle @toggle="$emit('sidenavToggle')" /> -->
-      <div class="logo">
-        <nuxt-link to="/">Logo</nuxt-link>
-      </div>
-      <div class="spacer"></div>
-      <div class="navigation-items">
-        <ul class="nav-list">
-          <li class="nav-item"><nuxt-link to="/">Recepies</nuxt-link></li>
-          <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
-          <li class="nav-item"><nuxt-link to="/admin">Admin</nuxt-link></li>
-        </ul>
-      </div>
-    </header>
-  </div>
+<div class="header-container">
+  <header class="the-header">
+    <TheSideNavToggle @toggle="$emit('sidenavToggle')" />
+    <div class="logo">
+      <nuxt-link to="/"> Logo</nuxt-link>
+    </div>
+    <div class="spacer"></div>
+    <div class="navigation-items">
+      <ul class="nav-list">
+        <li class="nav-item"><nuxt-link to="/receipies">Blog</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/admin">Admin</nuxt-link></li>
+      </ul>
+    </div>
+  </header>
+</div>
 </template>
 
 <script>
-// import ThesidenavToggle from "@/components/navigation/ThesidenavToggle";
+import TheSideNavToggle from "@/components/Navigation/TheSideNavToggle";
 
 export default {
-  name: "Header"
+  name: "TheHeader",
+  components: {
+    TheSideNavToggle
   }
- 
+};
 </script>
+
 
 <style scoped>
 .header-container {
@@ -33,15 +36,15 @@ export default {
 
 .the-header {
   width: 100%;
+  position: fixed;
   height: 60px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: lightgreen;
+  background-color: lightslategray;
   z-index: 100;
   box-sizing: border-box;
   padding: 0 20px;
-  border-radius:20px;
 }
 
 .logo {
@@ -87,6 +90,6 @@ export default {
 .nav-item a:hover,
 .nav-item a:active,
 .nav-item a.nuxt-link-active {
-  color: green;
+  color: red;
 }
 </style>

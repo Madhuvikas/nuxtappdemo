@@ -1,39 +1,42 @@
 <template>
     <div class="main-container">
         <div class="container">
-            <form @submit.prevent="submit" id="receipie">
+            <form @submit.prevent="onSave" id="receipie">
               <div class="row">
                 <div class="col-25">
-                    <label for="name">User Name</label>
+                    <label for="auhorname">Author Name</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="name" v-model="formvalues.name" placeholder="Your name.."/>
+                    <input type="text" id="authorname" v-model="formvalues.author" placeholder="Your name.."/>
                 </div>
               </div>
               <div class="row">
                 <div class="col-25">
-                  <label for="emailid">EmailId</label>
+                    <label for="titleinput">Title</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="titleinput" v-model="formvalues.title" placeholder="Your name.."/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                    <label for="thumbnail">Thumbnail</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="thumbnail" v-model="formvalues.thumbnail"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="previewtext">previewText</label>
                 </div>
                 <div class="col-75">
                   <input type="text" 
-                  id="emailid"  
-                  placeholder="Your EmailId.." 
-                  v-model="formvalues.emailid"
+                  id="previewtext"  
+                  v-model="formvalues.previewText"
                   @input="$emit('input', $event.target.value)"/>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-25">
-                <label for="course">Course</label>
-              </div>
-                <div class="col-75">
-                    <select id="course" v-model="formvalues.course">
-                        <option value="vue">Vue</option>
-                        <option value="nuxt">Nuxt</option>
-                        <option value="shopify">Shopify</option>
-                    </select>
-                </div>
-            </div>
                
             <br>
                 <div class="row">
@@ -66,15 +69,17 @@
                     formvalues:this.post 
                     ?{...this.post}
                     :{
-                        name:'',
-                        emailid:'',
-                        course:''
+                        author:'',
+                        title:'',
+                        content:'',
+                        previewText:'',
+                        thumbnail:''
                     }
                 };
             },
             methods:{
                 onSave(){
-                    console.log(this.formvalues);
+                   this.$emit('submit',this.formvalues)
                 },
                 onClick(){
                     this.$router.push("/admin")

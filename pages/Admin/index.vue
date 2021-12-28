@@ -2,9 +2,9 @@
     <div class="admin-page">
         <div class="new-post">
           <!-- <nuxt-link to:"/admin/new-recepie"> -->
-            <!-- <button @click="{$router.push('/admin/new-post/')}">Create Post</button> -->
+            <button @click="$router.push('/admin/new-post/')">Create Post</button> 
 
-            <nuxt-link to="/admin/new-post"><button>Create Post</button></nuxt-link>
+            <!-- <nuxt-link to="/admin/new-post"><button>Create Post</button></nuxt-link> -->
           
         </div>
         <div class="last-post">

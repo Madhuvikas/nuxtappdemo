@@ -1,9 +1,9 @@
 <template>
-  <nuxt-link :to=postlink class="receipie-preview">
+  <nuxt-link :to=postlink class="post-preview">
         <div class="receipie-container">
-           <div class="receipie-thumbnail"
+           <div class="post-thumbnail"
            :style="{ backgroundImage: 'url(' + thumbnail + ')' }"> </div>
-           <div class="receipie-content">
+           <div class="post-content">
                <h1>{{title}}</h1>  
                <p>{{ previewText }}</p>
             </div>   
@@ -47,45 +47,39 @@ export default {
 </script>
 <style scoped>
 
-.receipe {
-  box-sizing: border-box;
-  width: 200px;
-  padding: 9px;
+.post-preview {
   border: 1px solid #ccc;
-  box-shadow: 0 2px 2px #aaa;
-  margin: 10px;
+  box-shadow: 0 2px 2px #ccc;
+  background-color: white;
+  width: 90%;
 }
-.receipie-container{
-  margin:auto;
-  text-align:center;
+
+a {
+  text-decoration: none;
+  color: black;
 }
- .receipie-thumbnail {
-  background-position: center;
-  background-size: cover;
-  height: 200px;
+
+@media (min-width: 850px) {
+  .post-preview {
+    width: 400px;
+    margin: 10px;
+  }
+}
+
+.post-thumbnail {
   width: 100%;
-} 
- .receipie-preview{
-   /* border:1px solid red; */
-   /* box-shadow:0 2px 2px green; */
-   width:100%;
-   display: flex;
-   flex-direction: row;
- }
- @media (min-width:850px){
-   .receipie-preview{
-     width:400px;
-     margin: 10px;
-   }
- }
-.receipie-thumbnail{
-  width:100%;
   height: 200px;
-  background-size: cover;
   background-position: center;
+  background-size: cover;
 }
-.receipie-content{
+
+.post-content {
   padding: 10px;
   text-align: center;
+}
+
+a:hover .post-content,
+a:active .post-content {
+  background-color: #ccc;
 }
 </style>

@@ -1,11 +1,10 @@
-<<template>
+<template>
   <div class="home-page">
     <div class="intro">
-      <h1>Know Awsome Dishes</h1>
+      <h1>Know Awsome Recepies</h1>
     </div>
       <RecepieList :posts="loadedPosts"/>
     </div>
-  </div>
 </template>
 
 <script>
@@ -16,31 +15,10 @@
     components:{
       RecepieList
     },
-    asyncData(context,callback){
-      setTimeout(()=>{
-        callback(null,{
-          loadedPosts:[
-        {
-          id:'1',
-         title:'first recepie',
-          previewText:'Awsome Recepies',
-          thumbnail:'http://i1.wp.com/creativekhadija.com/wp-content/uploads/2016/06/eid-recipe-rasmilai.jpeg'
-          },
-          {
-            id:'2',
-         title:'second recepie',
-          previewText:'Delious Recepies',
-          thumbnail:'http://i1.wp.com/creativekhadija.com/wp-content/uploads/2016/06/eid-recipe-rasmilai.jpeg'
-          }
-      ]
-
-        });
-      
-      },1500);
-    },
-    
-    created(){
-      
+    computed:{
+      loadedPosts(){
+        return this.$store.getters.loadedPosts
+      }
     }
     }
 </script>
@@ -66,18 +44,4 @@
     font-size: 2rem;
   }
 }
-
-/* .featured-recepies { */
-   /* display: flex;
-  padding: 20px;
-  box-sizing: border-box;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
- a{
-   text-decoration: none;
-   color: blue;
- } */
-
 </style>
