@@ -9,7 +9,7 @@
         </div>
         <div class="last-post">
             <h1>Last Recepie</h1>
-              <RecepieList  isAdmin/>
+              <RecepieList  :posts="loadedPosts" isAdmin/>
         </div>
     </div>
 </template>
@@ -28,6 +28,11 @@
        required:true 
 
     }
+      }
+    },
+    computed:{
+      loadedPosts(){
+        return this.$store.getters.loadedPosts
       }
     }
     

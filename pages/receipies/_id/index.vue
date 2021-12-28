@@ -1,7 +1,7 @@
 <template>
   <div class="maincontainer">
     <div class="heading">
-     <h2 >Title of the post{{loadedPost.title}}</h2>
+     <h2 >Title of the post {{loadedPost.title}}</h2>
       <p>{{loadedPost.author}}</p>
       <div>{{loadedPost.updatedDate}}</div>
       <div>

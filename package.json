@@ -4,6 +4,8 @@
   "description": "My first Nuxt project",
   "author": "Madhuri",
   "private": true,
+  
+  
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
