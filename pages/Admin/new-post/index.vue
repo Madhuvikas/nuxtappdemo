@@ -1,10 +1,7 @@
 <template>
     <div class="admin-new-post-page">
         <div class="new-post-form">
-            
-                <Adminform @submit="onSubmited"/>
-
-            
+                <Adminform posts:loadedPosts @submit="onSubmited"/>
         </div>
     </div>
 </template>
@@ -18,14 +15,22 @@ import Adminform from '@/components/Admin/Adminform'
           },
           methods:{
             onSubmited(postData){
-            axios.post('https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts.json',{
-              ...postData,updateDate: new Date()
-              })
-            .then(result => console.log(result))
-            .catch(error => console.log(error))
+              // this.$store.dispatch('addPost',postData)
+              // .then(()=>{
+              //   this.$router.push("/admin")});
+              
+        axios
+        .post("https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts.json",
+
+          {...postData,updatedDate:new Date()})
+          .then(res => {
+            this.$router.push
+          })
+          .catch(e => console.log(e));
+      }
           }
-    }
-    }
+        };
+    
 </script>
 
 <style  scoped>

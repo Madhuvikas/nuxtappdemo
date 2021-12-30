@@ -39,11 +39,12 @@ export default {
   position: fixed;
   height: 60px;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
   background-color: lightslategray;
-  z-index: 100;
+  /* z-index: 100; */
   box-sizing: border-box;
+  border-radius: 30px;
   padding: 0 20px;
 }
 

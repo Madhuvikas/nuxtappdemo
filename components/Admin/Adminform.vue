@@ -7,7 +7,7 @@
                     <label for="auhorname">Author Name</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="authorname" v-model="formvalues.author" placeholder="Your name.."/>
+                    <input type="text" id="authorname" v-model="editedPost.author" placeholder="Your name.."/>
                 </div>
               </div>
               <div class="row">
@@ -15,7 +15,7 @@
                     <label for="titleinput">Title</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="titleinput" v-model="formvalues.title" placeholder="Your name.."/>
+                    <input type="text" id="titleinput" v-model="editedPost.title"/>
                 </div>
               </div>
               <div class="row">
@@ -23,7 +23,7 @@
                     <label for="thumbnail">Thumbnail</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="thumbnail" v-model="formvalues.thumbnail"/>
+                    <input type="text" id="thumbnail" v-model="editedPost.thumbnail"/>
                 </div>
               </div>
               <!-- <div class="">
@@ -36,7 +36,7 @@
                 <div class="col-75">
                   <input type="text" 
                   id="previewtext"  
-                  v-model="formvalues.previewText"
+                  v-model="editedPost.previewText"
                   @input="$emit('input', $event.target.value)"/>
                 </div>
               </div>
@@ -69,7 +69,7 @@
         },
             data(){
                 return{
-                    formvalues:this.post 
+                    editedPost:this.post 
                     ?{...this.post}
                     :{
                         author:'',
@@ -78,11 +78,11 @@
                         previewText:'',
                         thumbnail:''
                     }
-                };
+                }
             },
             methods:{
                 onSave(){
-                   this.$emit('submit',this.formvalues)
+                   this.$emit('submit',this.editedPost)
                 },
                 onClick(){
                     this.$router.push("/admin")

@@ -29,6 +29,10 @@ export default {
        required:true 
 
     },
+    previewText:{
+      type:String,
+      required:true
+    },
       content:{
       type:String,
       required:true
