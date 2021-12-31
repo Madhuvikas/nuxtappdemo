@@ -12,7 +12,7 @@
             
             <div class="form-field">
               <label for="emailid">Email-Id</label>
-              <!-- <button type="text" name="emailid" id="login" >{{isLogin} ? 'Login' : 'Sign Up'}</button> -->
+              <button type="submit" name="emailid" id="login" @click="">{{isLogin} ? 'Login' : 'Sign Up'}</button>
             </div>
 
             

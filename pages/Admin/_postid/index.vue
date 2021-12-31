@@ -1,40 +1,36 @@
 <template>
   <div class="admin-post-page">
     <section class="update-form">
-      <Adminform :post="loadedPost" @submit="onSubmitted"/>
+      <Adminform :post="editedPost" @submit="onSubmitted"/>
     </section>
   </div>
 </template>
 
 <script>
 import axios from "axios"
-import Adminform from '@/components/Admin/Adminform'
-
 export default {
   layout: 'admin',
-  components: {
-    Adminform
-  },
+  
   asyncData(context){
-    return axios.get("https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts/" +
-     context.params.postId + 
-     ".json")
-    .then((res)=>{
-      return{
-        loadedPost:{...res.data,id:context.params.postId}
-    }
-    })
-    .catch(e=> context.error(e));
+  return axios
+      .get(process.env.baseUrl + "/posts/" + context.params.postid + ".json")
+      .then((res) => {
+        return { editedPost: { ...res.data, id: context.params.postid } };
+      })
+      .catch((e) => context.error(e));
+  },
+  created(){
+    console.log(this.$store);
   },
   methods:{
     onSubmitted(editedPost){
-        // this.$store.dispatch('editpost',editedPost)
-        // .then(()=>{
-        //   this.$router.push('/admin');
-        // });
+    //     this.$store.dispatch('editPost',editedPost)
+    //     .then(()=>{
+    //       this.$router.push('/admin');
+    //     });
 
 
-     axios.put("https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts/" +
+     axios.put( process.env.baseUrl + "/posts/" +
      this.$route.params.postId + 
      ".json",editedPost)
      .then(res=>{

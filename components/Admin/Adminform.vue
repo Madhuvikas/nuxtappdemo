@@ -57,10 +57,10 @@
     export default {
          name:'InputField',
         props:{
-            btn:{
-                type:String,
-                default:''
-            },
+            // btn:{
+            //     type:String,
+            //     default:''
+            // },
             post:{
                 type:Object,
                 required:false

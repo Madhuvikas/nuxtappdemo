@@ -9,12 +9,9 @@
 
 <script>
  
-    import RecepieList from '@/components/AllRecepies/RecepieList'
      export default {
     
-    components:{
-      RecepieList
-    },
+   
     computed:{
       loadedPosts(){
         return this.$store.getters.loadedPosts

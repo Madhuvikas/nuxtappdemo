@@ -5,7 +5,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: "Nuxt-Post",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -19,14 +19,20 @@ export default {
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
+  loadingIndicator:{
+    color:'#3cb371',
+    name:'circle'
+  },
   /*
   ** Global CSS
   */
-  css: ['~assets/main.css'],
+  css: ['~assets/styles/main.css'],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    "~plugins/componentslist.js",
+    "~plugins/datefilter.js"
   ],
   /*
   ** Nuxt.js dev-modules
@@ -37,7 +43,14 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
   ],
+    axios:{
+      baseURL:process.env.BASE_URL || 'https://practicenuxt-ba183-default-rtdb.firebaseio.com',
+      credentials:false
+    },
+    
+ 
   components:true,
   /*
   ** Build configuration
@@ -48,5 +61,16 @@ export default {
     */
     extend (config, ctx) {
     }
-  }
+  },
+  env:{
+    baseUrl: process.env.BASE_URL || 'https://practicenuxt-ba183-default-rtdb.firebaseio.com'
+    
+  },
+  transition:{
+      name:'fade',
+      mode:'out-in'
+  },
+  // router:{
+  //   middleware:log
+  // }
 }

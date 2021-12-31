@@ -15,12 +15,8 @@
 </template>
 
 <script>
-    import RecepieList from '@/components/AllRecepies/RecepieList'
-     export default {
     
-    components:{
-      RecepieList
-    },
+     export default {
     data(){
       return{
            isAdmin:{

@@ -8,19 +8,17 @@
 
 <script>
 import axios from 'axios'
-import Adminform from '@/components/Admin/Adminform'
+
     export default {
-          components:{
-              Adminform
-          },
+         
           methods:{
             onSubmited(postData){
               // this.$store.dispatch('addPost',postData)
               // .then(()=>{
               //   this.$router.push("/admin")});
               
-        axios
-        .post("https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts.json",
+       return axios
+        .post(process.env.baseUrl + "/posts.json",
 
           {...postData,updatedDate:new Date()})
           .then(res => {
