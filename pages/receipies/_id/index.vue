@@ -20,19 +20,16 @@
 import axios from 'axios'
   export default {
   
-   asyncData(context) {
-    return axios.get('/posts/' 
-    + context.params.id + 
-    '.json')
-      .then( data=> {
+     asyncData(context) {
+    return axios.get('https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts/' + context.params.id + '.json')
+      .then(res => {
         return {
-          loadedPost: data
+          loadedPost: res.data
         }
       })
       .catch(e => context.error(e))
   }
-
-  }
+};
 </script>
 
 <style scoped>

@@ -31,7 +31,7 @@ export default {
 
 
      axios.put( process.env.baseUrl + "/posts/" +
-     this.$route.params.postId + 
+     this.$route.params.postid + 
      ".json",editedPost)
      .then(res=>{
        this.$router.push('/admin')

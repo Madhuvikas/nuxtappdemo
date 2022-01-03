@@ -22,7 +22,7 @@ import axios from 'axios'
 
           {...postData,updatedDate:new Date()})
           .then(res => {
-            this.$router.push
+            this.$router.push("/admin")
           })
           .catch(e => console.log(e));
       }
