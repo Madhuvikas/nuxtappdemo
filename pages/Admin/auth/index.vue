@@ -1,45 +1,78 @@
 <template>
-    <div class="">
-        <form>
-            <div class="form-field">
-              <label for="emailid">Email-Id</label>
-              <input type="text" name="emailid" id="emailid" />
-            </div>
-            <div class="form-field">
-              <label for="emailid">Password</label>
-              <input type="text" name="emailid" id="emailid" />
-            </div>
-            
-            <div class="form-field">
-              <label for="emailid">Email-Id</label>
-              <button type="submit" name="emailid" id="login" @click="">{{isLogin} ? 'Login' : 'Sign Up'}</button>
-            </div>
-
-            
-        
-        </form>
+  <div class="admin-auth-page">
+    <div class="auth-container">
+      <form @submit.prevent="onSubmit" id="admin">
+        <div class="fields">
+            <label for="email">Email-Id</label>
+            <input type="text" id="email" v-model="email" placeholder="Your email.."/>
+        </div>
+        <div class="fields">
+            <label for="Password">Password</label>
+            <input type="text" id="Password" v-model="password" placeholder="Your password.."/>
+        </div>
+         <div class="fields"> 
+        <button type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</button>
+        <button
+          type="button"
+          btn-style="inverted"
+          style="margin-left: 10px"
+          @click="isLogin = !isLogin">Switch to {{ isLogin ? 'Signup' : 'Login' }}</button>
+          </div>
+      </form>
     </div>
+  </div>
 </template>
+
 <script>
-    import Adminform from '@/components/Admin/Adminform'
+
+
 export default {
   name: 'AdminAuthPage',
   layout: 'admin',
-  components: {
-   Adminform
-  },
+
   data() {
     return {
-      isLogin: true
+  isLogin: true,
+  email:'',
+  password:''
     }
-  }
+},
+methods:{
+        onSubmit(){
+          // let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.fbAPIKey;
+          // if(!this.isLogin){
+          //   authUrl ="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" 
+          // + process.env.fbAPIKey
+          // }
+          // this.$axios.$post(authUrl,{
+          //   email:this.email,
+          //   password:this.password,
+          //   returnSecureToken:true
+          // })
+          // .then(result=>{
+          //   console.log(result)
+          //   })
+          // .catch(e=> console.log(e));
+          this.$store.dispatch("aunthenticateUser",{
+            isLogin:this.isLogin,
+            password:this.password,
+            email:this.email
+          }).
+          then(()=>{
+            this.$route.push('/admin')
+          })
+          
+        }
+      }
 }
 </script>
 
 <style scoped>
-  
 .admin-auth-page {
   padding: 20px;
+}
+.fields{
+  margin-bottom: 10px;
 }
 
 .auth-container {
@@ -53,4 +86,3 @@ export default {
 }
 </style>
 
-       

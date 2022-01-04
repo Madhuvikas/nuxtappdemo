@@ -63,7 +63,8 @@ export default {
     }
   },
   env:{
-    baseUrl: process.env.BASE_URL || 'https://practicenuxt-ba183-default-rtdb.firebaseio.com'
+    baseUrl: process.env.BASE_URL || 'https://practicenuxt-ba183-default-rtdb.firebaseio.com',
+    fbAPIKey:"AIzaSyDVXJfEHWdFXX9_Fi6DnPpCI7VsM6wtjC8"
     
   },
   transition:{
