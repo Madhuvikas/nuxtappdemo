@@ -17,15 +17,17 @@
 <script>
     
      export default {
-    data(){
-      return{
-           isAdmin:{
-      type:Boolean,
-       required:true 
+       layout:'admin',
+    middleware:'auth',
+    // data(){
+    //   return{
+    //        isAdmin:{
+    //   type:Boolean,
+    //    required:true 
 
-    }
-      }
-    },
+    // }
+    //   }
+    // },
     computed:{
       loadedPosts(){
         return this.$store.getters.loadedPosts

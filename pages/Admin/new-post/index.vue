@@ -10,7 +10,8 @@
 import axios from 'axios'
 
     export default {
-         
+         layout:'admin',
+         middleware:'auth',
           methods:{
             onSubmited(postData){
               // this.$store.dispatch('addPost',postData)

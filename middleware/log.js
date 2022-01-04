@@ -1,3 +1,3 @@
-export default function(dontext){
+export default function(context){
     console.log("The middleware is running")
 }
