@@ -10,6 +10,7 @@
 import axios from "axios"
 export default {
   layout: 'admin',
+  middleware:'auth',
   
   asyncData(context){
   return axios
