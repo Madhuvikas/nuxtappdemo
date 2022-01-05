@@ -5,7 +5,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       loadedPosts: [],
-      token:null
+      token: null
     },
     mutations: {
       setPosts(state, posts) {
@@ -20,18 +20,21 @@ const createStore = () => {
         );
         state.loadedPosts[postIndex] = editedPost
       },
-      setToken(state,token){
-        state.token=token;      //store the token once action is complete or once get back a responce
-      }
+        setToken(state, token) {
+        state.token = token;
+      },
+      // clearToken(state) {
+      //   state.token = null;
+      // }
     },
     actions: {
       nuxtServerInit(vuexContext, context) {
-        return axios
-          .get(process.env.baseUrl + "/posts.json")
-          .then(res => {
+        return context.app.$axios
+          .$get("/posts.json")
+          .then(data => {
             const postsArray = [];
-            for (const key in res.data) {
-              postsArray.push({ ...res.data[key], id: key });
+            for (const key in data) {
+              postsArray.push({ ...data[key], id: key });
             }
             vuexContext.commit("setPosts", postsArray);
           })
@@ -42,56 +45,65 @@ const createStore = () => {
           ...post,
           updatedDate: new Date()
         }
-        return axios
-        .post("https://nuxt-blog.firebaseio.com/posts.json?auth=" + vuexContext.state.token, createdPost)
-        .then(result => {
-          vuexContext.commit('addPost', {...createdPost, id: result.data.name})
+        return this.$axios
+        .$post("https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts.json", createdPost)
+        .then(data => {
+          vuexContext.commit('addPost', {...createdPost, id:data.name})
         })
         .catch(e => console.log(e));
       },
-      editPost({ commit }, editedPost) {
-        return axios.put("https://nuxt-blog.firebaseio.com/posts/" +
+      editPost({vuexContext} , editedPost) {
+        return this.$axios.$put("https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts/" +
           editedPost.id +
-          ".json?auth=" + vuexContext.state.token, editedPost)
+          ".json?auth" + vuexContext.state.token, editedPost)
           .then(res => {
-            commit('editPost', editedPost)
+            vuexContext.commit('editPost', editedPost)
           })
           .catch(e => console.log(e))
       },
+      authenticateUser(vuexContext,authData){
+          let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
+           + process.env.fbAPIKey;
+          console.log("signin", authUrl)
+          if(!authData.isLogin){
+        
+            authUrl ="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" 
+          + process.env.fbAPIKey
+          console.log("signup", authUrl)
+          }
+          return this.$axios.$post(authUrl,{
+            email:authData.email,
+            password:authData.password,
+            returnSecureToken:true,
+          })
+          .then(result => {
+            vuexContext.commit('setToken',result.idToken );
+            // this.$router.push("/admin")
+         
+          //  vuexContext.dispatch("setLogoutTimer",result.expiresIn * 1000) 
+        })
+          .catch(e => console.log(e));
+      },
       setPosts(vuexContext, posts) {
         vuexContext.commit("setPosts", posts);
-      },
-      authenticateUser(vuexContext,authData){
-        let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.fbAPIKey;
-        console.log("signin", authUrl)
-        if(!authData.isLogin){
-
-          authUrl ="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" 
-        + process.env.fbAPIKey
-        console.log("signup", authUrl)
-        }
-        return this.$axios.$post(authUrl,{
-          email:authData.email,
-          password:authData.password,
-          returnSecureToken:true,
-        })
-        .then(result=>{
-          console.log("loginuser")
-          this.$router.push("/admin")
-        vuexContext.commit('setToken',result.idToken );
-          })
-        .catch(e=> console.log(e));
       }
     },
     getters: {
       loadedPosts(state) {
         return state.loadedPosts;
       }
-    },
-    isAuthenticated(state){
-     return state.token != null
     }
   });
 };
 
 export default createStore;
+
+
+
+
+
+
+
+
+
+//https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts.json

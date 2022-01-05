@@ -8,7 +8,7 @@
         </div>
         <div class="fields">
             <label for="Password">Password</label>
-            <input type="text" id="Password" v-model="password" placeholder="Your password.."/>
+            <input type="password" id="Password" v-model="password" placeholder="Your password.."/>
         </div>
          <div class="fields"> 
         <button type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</button>
@@ -39,7 +39,8 @@ export default {
 },
 methods:{
         onSubmit(){
-          // let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.fbAPIKey;
+          // let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
+          //  + process.env.fbAPIKey;
           // if(!this.isLogin){
           //   authUrl ="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" 
           // + process.env.fbAPIKey
@@ -60,7 +61,7 @@ methods:{
             
           })
           .then(()=>{
-            this.$router.push('/admin')
+            this.$router.push('/admin');
             console.log("authenticate")
           })
           

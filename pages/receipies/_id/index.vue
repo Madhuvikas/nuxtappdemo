@@ -17,16 +17,16 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
   export default {
   
      asyncData(context) {
-    return axios.get('https://practicenuxt-ba183-default-rtdb.firebaseio.com/posts/'
+    return context.app.$axios.$get('/posts/'
      + context.params.id + 
      '.json')
-      .then(res => {
+      .then(data => {
         return {
-          loadedPost: res.data
+          loadedPost: data
         }
       })
       .catch(e => context.error(e))

@@ -18,16 +18,16 @@
     
      export default {
        layout:'admin',
-    middleware:'auth',
-    // data(){
-    //   return{
-    //        isAdmin:{
-    //   type:Boolean,
-    //    required:true 
+    // middleware:'auth',
+    data(){
+      return{
+      isAdmin:{
+      type:Boolean,
+      required:true 
 
-    // }
-    //   }
-    // },
+    }
+      }
+    },
     computed:{
       loadedPosts(){
         return this.$store.getters.loadedPosts

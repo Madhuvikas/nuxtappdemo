@@ -1,7 +1,7 @@
 <template>
     <div class="admin-new-post-page">
         <div class="new-post-form">
-                <Adminform posts:loadedPosts @submit="onSubmited"/>
+                <Adminform @submit="onSubmited"/>
         </div>
     </div>
 </template>
@@ -11,7 +11,6 @@ import axios from 'axios'
 
     export default {
          layout:'admin',
-         middleware:'auth',
           methods:{
             onSubmited(postData){
               // this.$store.dispatch('addPost',postData)
