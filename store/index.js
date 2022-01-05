@@ -79,6 +79,8 @@ const createStore = () => {
           })
           .then(result => {
             vuexContext.commit('setToken',result.idToken );
+            localStorage.setItem('token',result.idToken);
+            localStorage.setItem("tokenExpiration",new Date().getTime() + result.expiresIn * 1000 )
             this.$router.push("/admin")
          
            vuexContext.dispatch("setLogoutTimer",result.expiresIn * 1000) 
@@ -92,16 +94,28 @@ const createStore = () => {
         setTimeout(()=>{
             vuexContext.commit('clearToken')
         },duration)
+      },
+      initAuth(vuexContext){
+        const token = localStorage.getItem('token')
+        const expirationDate = localStorage.getItem("tokenExppiresIn")
+        
+        if(new Date() > expirationDate || ! token){
+        return;
+      
       }
+      vuexContext.commit("setToken", token);
+    }
+      
     },
     getters: {
       loadedPosts(state) {
         return state.loadedPosts;
+      },
+      isAuthenticated(state){
+        return state.token !=null;
       }
     },
-    isAuthenticated(state){
-      return state.token !=null;
-    }
+   
   });
 };
 
