@@ -17,20 +17,23 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
   export default {
   
      asyncData(context) {
-    return context.app.$axios.$get('/posts/'
+    return axios.get(process.env.baseUrl + '/posts/'
      + context.params.id + 
      '.json')
-      .then(data => {
+      .then(res => {
         return {
-          loadedPost: data
+          loadedPost: res.data
         }
       })
       .catch(e => context.error(e))
-  }
+  },
+  head:{
+    title:'nuxt-post',
+  },
 };
 </script>
 

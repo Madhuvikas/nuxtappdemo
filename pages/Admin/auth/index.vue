@@ -1,14 +1,21 @@
 <template>
   <div class="admin-auth-page">
     <div class="auth-container">
-      <form @submit.prevent="onSubmit" id="admin">
+      <form @submit.prevent="onSubmit">
         <div class="fields">
             <label for="email">Email-Id</label>
-            <input type="text" id="email" v-model="email" placeholder="Your email.."/>
+            <input 
+            type="email" 
+            id="email" 
+            v-model="email"
+             placeholder="Your email.."/>
         </div>
         <div class="fields">
             <label for="Password">Password</label>
-            <input type="password" id="Password" v-model="password" placeholder="Your password.."/>
+            <input type="password" 
+            id="Password" 
+            v-model="password" 
+            placeholder="minimum 6 character.."/>
         </div>
          <div class="fields"> 
         <button type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</button>
@@ -27,7 +34,7 @@
 
 
 export default {
-  name: 'AdminAuthPage',
+ 
   layout: 'admin',
 
   data() {
@@ -63,11 +70,11 @@ methods:{
           .then(()=>{
             this.$router.push('/admin');
             console.log("authenticate")
-          })
+          });
           
-        }
-      }
-}
+        },
+      },
+};
 </script>
 
 <style scoped>
@@ -87,6 +94,11 @@ methods:{
   margin: auto;
   padding: 10px;
   box-sizing: border-box;
+}
+@media screen and (max-width: 425px){
+  .auth-containe{
+    width: 60%;
+  }
 }
 </style>
 

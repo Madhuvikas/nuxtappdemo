@@ -10,13 +10,13 @@
 import axios from "axios"
 export default {
   layout: 'admin',
-  // middleware:'auth',
+  middleware:'auth',
   
   asyncData(context){
-  return context.app.$axios
-      .$get(process.env.baseUrl + "/posts/" + context.params.postid + ".json")
-      .then((data) => {
-        return { editedPost: { ...data, id: context.params.postid } };
+  return axios
+      .get(process.env.baseUrl + "/posts/" + context.params.postid + ".json")
+      .then((res) => {
+        return { editedPost: { ...res.data, id: context.params.postid } };
       })
       .catch((e) => context.error(e));
   },
