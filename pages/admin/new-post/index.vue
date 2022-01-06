@@ -11,21 +11,21 @@ import axios from 'axios'
 
     export default {
          layout:'admin',
-         middleware:'auth',
+         middleware:['auth','check-auth'],
           methods:{
             onSubmited(postData){
-              // this.$store.dispatch('addPost',postData)
-              // .then(()=>{
-              //   this.$router.push("/admin")});
+              this.$store.dispatch('addPost',postData)
+              .then(()=>{
+                this.$router.push("/admin")});
               
-       return axios
-        .post(process.env.baseUrl + "/posts.json",
+      //  return axios
+      //   .post(process.env.baseUrl + "/posts.json",
 
-          {...postData,updatedDate:new Date()})
-          .then(res => {
-            this.$router.push("/admin")
-          })
-          .catch(e => console.log(e));
+      //     {...postData,updatedDate:new Date()})
+      //     .then(res => {
+      //       this.$router.push("/admin")
+      //     })
+      //     .catch(e => console.log(e));
       }
           }
         };

@@ -55,14 +55,11 @@ export default {
   border: 1px solid #ccc;
   box-shadow: 0 2px 2px #ccc;
   background-color: white;
-  width: 90%;
-  transition: transform .2s;
+  width: 400px;
+  /* transition: transform .2s; */
+  /* overflow: hidden; */
 }
-.post-preview:hover{
-  -ms-transform: scale(0.5); /* IE 9 */
-  -webkit-transform: scale(0.5); /* Safari 3-8 */
-  transform: scale(0.5);
-}
+
 a {
   text-decoration: none;
   color: black;

@@ -69,7 +69,7 @@ methods:{
           })
           .then(()=>{
             this.$router.push('/admin');
-            console.log("authenticate")
+       
           });
           
         },

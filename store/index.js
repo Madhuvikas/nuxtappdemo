@@ -83,12 +83,12 @@ const createStore = () => {
             localStorage.setItem('token',result.idToken);
             localStorage.setItem(
               "tokenExpiration",
-              new Date().getTime() + number.parseInt(result.expiresIn) *1000);
+              new Date().getTime() + Number.parseInt(result.expiresIn) *1000);
             // this.$router.push("/admin")
               Cookie.set('jwt',result.idToken);
               Cookie.set(
                 'expirationDate'
-                ,new Date().getTime() + number.parseInt(result.expiresIn) *1000
+                ,new Date().getTime() + Number.parseInt(result.expiresIn) *1000
                 );
                 return this.$axios .$post('http://localhost:3000/api/track-data',{data:"authenticated"})
               // vuexContext.dispatch("setLogoutTimer",result.expiresIn * 1000) 
