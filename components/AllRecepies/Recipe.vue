@@ -59,9 +59,9 @@ export default {
   transition: transform .2s;
 }
 .post-preview:hover{
-  -ms-transform: scale(1.5); /* IE 9 */
-  -webkit-transform: scale(1.5); /* Safari 3-8 */
-  transform: scale(1.5);
+  -ms-transform: scale(0.5); /* IE 9 */
+  -webkit-transform: scale(0.5); /* Safari 3-8 */
+  transform: scale(0.5);
 }
 a {
   text-decoration: none;
