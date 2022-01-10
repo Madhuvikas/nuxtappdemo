@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TheHeader @sidenavToggle="displaySidenav =!displaySidenav"/>
-    <ThesideNav
+    <TheSideNav
     :show="displaySidenav" 
     @close="displaySidenav=false"/>
 
@@ -11,12 +11,12 @@
 
 <script>
 import TheHeader from "@/components/Navigation/TheHeader.vue";
-import ThesideNav from "@/components/Navigation/ThesideNav.vue";
+import TheSideNav from "@/components/Navigation/TheSideNav.vue";
      export default {
     //  middleware:'log',
       components: {
        TheHeader,
-       ThesideNav
+       TheSideNav
        },
        data(){
        return{
