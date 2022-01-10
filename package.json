@@ -4,6 +4,9 @@
   "description": "My first Nuxt project",
   "author": "Madhuri",
   "private": true,
+  "engines": {
+    "node": "16.13.1"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
